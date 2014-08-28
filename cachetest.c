@@ -101,22 +101,22 @@ int main() {
     __uint128_t *mem = calloc(1ULL << 30, 1);
 	uint32_t blockExp = BLOCK_EXP; // Define this in Makefile to set memory size.
     printf("Access times for random read then write of %u byte blocks\n", 1 << (blockExp + 4));
-    // 16KiB random read/write test
+    // 16KiB random read/write test - 1/2 my L1 cache
     randomWrite(mem, 14, 30, blockExp);
     randomRead(mem, 14, 30, blockExp);
     randomReadWrite(mem, 14, 30, blockExp);
 	printf("\n");
-    // 128KiB random read/write test
+    // 128KiB random read/write test - 1/2 my L2 cache
     randomWrite(mem, 17, 30, blockExp);
     randomRead(mem, 17, 30, blockExp);
     randomReadWrite(mem, 17, 30, blockExp);
 	printf("\n");
-    // 4MiB random read/write test
+    // 4MiB random read/write test - 1/2 my L3 cache
     randomWrite(mem, 22, 30, blockExp);
     randomRead(mem, 22, 30, blockExp);
     randomReadWrite(mem, 22, 30, blockExp);
 	printf("\n");
-    // 1GiB random read/write test
+    // 1GiB random read/write test - blow out of cache
     randomWrite(mem, 30, 30, blockExp);
     randomRead(mem, 30, 30, blockExp);
     randomReadWrite(mem, 30, 30, blockExp);
